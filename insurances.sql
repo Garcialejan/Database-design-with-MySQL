@@ -39,8 +39,8 @@ CREATE TABLE vehicles (
 CREATE TABLE properties (
     insurance_id INT UNSIGNED PRIMARY KEY,
     area DECIMAL(8, 2) UNSIGNED NOT NULL,
-    address VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
+    street VARCHAR(255) NOT NULL,
     number VARCHAR(255) NOT NULL,
     unit VARCHAR(255) NULL,
 
