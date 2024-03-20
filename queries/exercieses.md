@@ -21,11 +21,35 @@
 
 
 # Consultas con JOIN
-- Queremos ver los nombres de los clientes, los tipos de seguro que tienen
-contratados y el coste anual de estos.
+- Queremos ver los nombres de los clientes, los tipos de seguro que tienen contratados y el coste anual de estos.
+        SELECT clients.name, insurances.type, insurances.annual_cost FROM clients JOIN insurances ON insurances.client_id = clients.id
+        SELECT name, type, annual_cost FROM clients JOIN insurances ON insurances.client_id = clients.id
+        -- Si solo aparecen en una tabla, no hace falta especificar de que tabla provienen por lo que puedes ahorrar código
+
 - Queremos saber el número de matrícula, precio y coste anual del seguro de todos los vehículos que tenemos almacenados.
-- De cada cliente que tiene propiedades aseguradas queremos saber su nombre, los metros cuadrados de la propiedad, la ciudad donde se ubica dicha propiedad y
-el coste anual del seguro.
+        SELECT 
+                vehicles.plate_number, 
+                vehicles.price, 
+                insurances.annual_cost 
+        FROM insurances 
+        JOIN vehicles ON insurances.id = vehicles.insurance_id 
+        WHERE insurances.type = "VEHICLE";
+
+        -- Con el WHERE final nos aseguramos de que efectivamente solo estamos tteniendo en cuenta datos de seguros de vehículos. Es una capa más de seguridad, aunque el backend ya 
+        debería lidiar con este tipo de problemas.
+
+        
+
+- De cada cliente que tiene propiedades aseguradas queremos saber su nombre, los metros cuadrados de la propiedad, la ciudad donde se ubica dicha propiedad y el coste anual del seguro.
+        SELECT
+                clients.name,
+                properties.area,
+                properties.city,
+                insurances.annual_cost
+        FROM clients
+        JOIN insurances ON insruances.client_id = clients.id
+        JOIN properties ON properties.insurance_id = insurances.id
+        WHERE insurances.type = "PROPERTY";
 
 # Agrupaciones
 
