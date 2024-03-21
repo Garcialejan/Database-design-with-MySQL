@@ -54,13 +54,65 @@
 # Agrupaciones
 
 - ¿Cuánto dinero hemos ingresado con todos los seguros vendidos hasta la fecha?
+        SELECT SUM(annual_cost) AS facturacion_total FROM insurances;
+
 - ¿Cuánto cuesta el seguro más caro? ¿Y el más barato?
+        SELECT MAX(annual_cost) FROM insurances;
+        SELECT MIN(annual_cost) FROM insurances;
+
 - ¿Cuál es el seguro más caro? ¿Y el más barato?
+        SELECT * FROM insurances
+        WHERE annual_cost = (SELECT MAX(annual_cost) FROM insurances);
+
+        SELECT * FROM insurances 
+        WHERE annual_cost = (SELECT MIN(annual_cost) FROM insurances);
+
 - ¿Quién ha contratado el seguro más caro?
+        SELECT 
+                clients.name,
+                clients.id
+        FROM insurances 
+        JOIN clients ON insurances.client_id = clients.id
+        WHERE insurances.annual_cost = (SELECT MAX(annual_cost) FROM insurances);
+
+
 - ¿Cuánto dinero hemos ingresado con los seguros contratados en 2021?
+        SELECT SUM(annual_cost) FROM insurances 
+        WHERE EXTRACT(YEAR FROM start_date) = 2021;
+
 - ¿Cuál es el precio promedio de los vehículos que hemos asegurado?
+        SELECT AVG(price) FROM vehicles;
+
 - ¿Cuántos seguros de propiedad hemos vendido?
+        SELECT COUNT(insurance_id) FROM properties;
+        SELECT COUNT(*) FROM insurances WHERE type = "PROPERTY";
+
 - ¿Cuánto hemos ingresado en total con cada tipo de seguro?
+        SELECT type, SUM(annual_cost) FROM insurances GROUP BY (type);
+
 - ¿Cuánto nos ha pagado en total cada cliente?
+        SELECT client_id, SUM(annual_cost) FROM insurances GROUP BY(client_id);
+        --Si queremos que aparezca también el nombre del cliente podemos hacer
+        SELECT 
+                clients.id,
+                lients.name,
+        SUM(annual_cost)
+        FROM clients 
+        JOIN insurances ON clients.id = insurances.client_id
+        GROUP BY clients.id;
+
+
 - ¿Cuánto nos ha pagado en total cada cliente por cada tipo de seguro?
+        SELECT client_id, id, type, SUM(annual_cost) FROM insurances GROUP BY client_id, type;
+
 - ¿Cuánto seguros de coche y de propiedad tiene cada cliente?
+        SELECT client_id, id, type, COUNT(type) FROM insurances GROUP BY client_id, type;
+
+
+SELECT 
+        clients.id,
+        clients.name,
+SUM(annual_cost)
+FROM clients 
+JOIN insurances ON clients.id = insurances.client_id
+GROUP BY clients.id;
