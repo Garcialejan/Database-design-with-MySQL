@@ -31,6 +31,6 @@
 -- FROM insurances 
 -- GROUP BY client_id, type;
 
-SELECT client_id, id, type, COUNT(type)
-FROM insurances 
-GROUP BY client_id, type;
+-- SELECT client_id, id, type, COUNT(type)
+-- FROM insurances 
+-- GROUP BY client_id, type;

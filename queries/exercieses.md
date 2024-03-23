@@ -107,12 +107,3 @@
 
 - ¿Cuánto seguros de coche y de propiedad tiene cada cliente?
         SELECT client_id, id, type, COUNT(type) FROM insurances GROUP BY client_id, type;
-
-
-SELECT 
-        clients.id,
-        clients.name,
-SUM(annual_cost)
-FROM clients 
-JOIN insurances ON clients.id = insurances.client_id
-GROUP BY clients.id;
