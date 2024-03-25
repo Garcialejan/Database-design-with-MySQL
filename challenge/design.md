@@ -33,13 +33,13 @@ así como la fecha de emisión de la transferencia y la fecha de finalización
 <details>
 <summary>Diseño conceptual</summary>
 <br>
-<img style="width: 100%;" src="challenge\RETO_diseño_conceptual.png">
+<img style="width: 100%;" src="./challenge/svg/RETO_diseño_conceptual.svg">
 </details>
 
 <details>
 <summary>Diseño lógico</summary>
 <br>
-<img style="width: 100%;" src="challenge\RETO_diseño_logico.png"> 
+<img style="width: 100%;" src="./challenge/svg/RETO_diseño_logico.svg"> 
 </details>
 
 <details>
